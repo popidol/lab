@@ -1,7 +1,7 @@
 pipeline {
    agent {
        any {
-           image 'gcc:latest'
+           image 'python:latest'
        }
    }
 
