@@ -1,21 +1,21 @@
 pipeline {
-   agent {
-       any {
-           image 'python:latest'
-       }
-   }
-
-   stages {
-       stage('Build') {
-           steps {
-               sh 'python lab/main.py'
-           }
-       }
-   }
-
-   post {
-       success {
-           archiveArtifacts artifacts: 'hello_world', fingerprint: true
-       }
-   }
-}
+    agent {
+        docker {
+            image 'gcc:latest'
+        }
+    }
+   
+    stages {
+        stage('Build') {
+            steps {
+                sh 'g++ -o hello_world hello_world.cpp'
+            }
+        }
+    }
+   
+    post {
+        success {
+            archiveArtifacts artifacts: 'hello_world', fingerprint: true
+        }
+    }
+} 
